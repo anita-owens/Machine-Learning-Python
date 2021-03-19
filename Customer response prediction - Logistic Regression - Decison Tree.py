@@ -6,7 +6,7 @@ Created on Sat Jun 20 08:35:53 2020
 @author: anitaowens
 """
 
-############Customer response prediction using Logistic Regression & Regression Tree ################
+############ Marketing customer response prediction using decision trees ################
 
 
 # =============================================================================
@@ -23,8 +23,11 @@ Created on Sat Jun 20 08:35:53 2020
 # 
 # =============================================================================
 
-# Setup workspace
+# Go to System Preferences > Keyboard > check "use f1, f2 keys as standard fn keys"
+# Spyder IDE shortcuts - run selection or current line F9
 
+
+# Setup workspace
 from os import chdir, getcwd
 wd=getcwd()
 chdir(wd)
@@ -46,7 +49,7 @@ from sklearn.impute import SimpleImputer
 import matplotlib.pyplot as plt 
 
 #Import data - CSV file
-df = pd.read_csv('datasets/bank-full.csv')
+df = pd.read_csv('datasets/bank-full.csv', delimiter=";")
 
 #Check results
 print(df.head())
@@ -58,5 +61,16 @@ print(df.info())
 
 #Calculate summary statistics for numeric variables
 print(df.describe())
+
+
+
+#what was the response rate? of our target variable - the y column
+print(df.y.value_counts()) #just the counts
+print(df.y.value_counts(normalize=True)) #with percentage
+
+
+target_tab  = print(pd.crosstab(index = df["y"],
+                              columns="count"))
+
 
 
